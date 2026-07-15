@@ -1,0 +1,6 @@
+
+
+
+lastname = "ronderes"
+
+print(lastname.replace("e","f"))
