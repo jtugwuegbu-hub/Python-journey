@@ -1,0 +1,15 @@
+weather= input("Is the weather good or bad? ").lower()
+
+productive= input("Is the day productive or unproductive? ").lower()
+
+if weather== "good" and productive== "productive":
+    print("The mood is good")
+
+elif weather== "bad" and productive== "productive":
+    print("The mood is okay")
+
+elif weather== "good" and productive== "unproductive":
+    print("Go relax outside, and enjoy the weather")
+
+else:
+    print("Its a bad day and bad mood.")
