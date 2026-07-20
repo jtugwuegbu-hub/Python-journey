@@ -1,7 +1,7 @@
 weather= input("Is the weather good or bad? ").lower()
 
 productive= input("Is the day productive or unproductive? ").lower()
-
+#reading input to satisfy the following
 if weather== "good" and productive== "productive":
     print("The mood is good")
 
