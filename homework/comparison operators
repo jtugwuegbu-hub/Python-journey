@@ -1,0 +1,21 @@
+#password= input("Create a password? ")
+
+#if len(password)<=3:
+    #print("Password is to short, please make it longer than 3 characters.")
+
+#elif len(password)>8:
+   #print("Password is to long, please no more then 8 characters.")
+
+#else:
+    #print("password is good.")
+
+cost= float(input("How much does the item cost? "))
+quantity=int(input("How many items are you buying? "))
+total= cost*quantity
+
+if quantity>1000:
+    discount= total*.9
+    print(f"Your discounted price is ,{discount:.2f}")
+
+elif quantity<=1000:
+    print(f"your final price is, {total:.2f}")
