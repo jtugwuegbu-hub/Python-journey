@@ -13,9 +13,9 @@ cost= float(input("How much does the item cost? "))
 quantity=int(input("How many items are you buying? "))
 total= cost*quantity
 
-if quantity>1000:
+if total>1000:
     discount= total*.9
     print(f"Your discounted price is ,{discount:.2f}")
 
-elif quantity<=1000:
+elif total<=1000:
     print(f"your final price is, {total:.2f}")
