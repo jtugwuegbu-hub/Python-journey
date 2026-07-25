@@ -2,7 +2,13 @@ balance=1000
 transactions=[]
 print("your balance is $1000")
 while True:
-    user_menu=int(input("Select one of the following numbers:\n1.Check Balance\n2.Deposit money\n3.Withdraw money\n4.Exit\n5.Transaction history\n"))
+    user_menu=int(input(
+    "Select one of the following numbers:\n"
+    "1.Check Balance\n"
+    "2.Deposit money\n"
+    "3.Withdraw money\n"
+    "4.Exit\n"
+    "5.Transaction history\n"))
     if user_menu == 1:
         print(f"your balance is ${balance:,.2f}")
         print("---------------------------------")
@@ -14,7 +20,6 @@ while True:
             print("-------------------------------")
         else:
             balance+=deposit
-        transactions.append(f"Deposited ${deposit:,.2f}")
         print(f"your new balance is ${balance:,.2f}")
         print("---------------------------------------------")
         continue
