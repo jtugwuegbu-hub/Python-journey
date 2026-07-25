@@ -1,6 +1,6 @@
 balance=1000
 transactions=[]
-print("your balance is $1000")
+print(f"your balance is ${balance}")
 while True:
     user_menu=int(input(
     "Select one of the following numbers:\n"
