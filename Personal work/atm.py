@@ -21,6 +21,7 @@ while True:
         else:
             balance+=deposit
         print(f"your new balance is ${balance:,.2f}")
+        transactions.append(f"Deposited ${deposit:,.2f}")
         print("---------------------------------------------")
         continue
     elif user_menu == 3:
@@ -53,4 +54,5 @@ while True:
         print("------------------------------------------")
         continue
 
+print("----------------------------------------")
 print(f"You completed {len(transactions)} transactions.\nYour final balance is ${balance:,.2f},\nGoodbye!")
