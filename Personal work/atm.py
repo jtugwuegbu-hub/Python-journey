@@ -21,6 +21,7 @@ while True:
         else:
             balance+=deposit
         print(f"your new balance is ${balance:,.2f}")
+        transactions.append(deposit)
         print("---------------------------------------------")
         continue
     elif user_menu == 3:
@@ -34,7 +35,7 @@ while True:
         else:
             balance-=withdraw
             print(f"you withdrew ${withdraw}, your balance is now ${balance:,.2f}")
-            transactions.append(f"Withdrew ${withdraw:,.2f}")
+            transactions.append(withdraw)
             print("------------------------------------------------------------")
             continue
     elif user_menu == 4:
