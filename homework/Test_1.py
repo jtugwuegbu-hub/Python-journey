@@ -3,38 +3,30 @@ while True:
     if user == "exit":
         break
     #age input
-    while True:
-        print("---------------------------------")
-        age= int(input("How old are you?\n"))
-        if  not 18<=age<=65:
+    age= int(input("How old are you?\n"))
+    if  not 18<=age<=65:
             print("age is invalid for BMI")
-        else:
-            break
+            continue
     #weight input
     print("---------------------------------")
-    while True:
-        weight=float(input("What is your weight?\n"))
-        if weight <=0:
+    weight=float(input("What is your weight?\n"))
+    if weight <=0:
             print("Enter valid wieght")
-        else:
-            break
-    while True:
-        print("----------------------------------------")
-        unit=input("Is your weight in pounds or kilograms\n").lower()
-        if unit == "pounds" or unit == "kilograms":
-            break
-        else:
-            print("Invalid entry")
-    if unit=="pounds":
+            continue
+
+    print("----------------------------------------")
+    unit=input("Is your weight in pounds or kilograms\n").lower()
+    if unit != "pounds" and unit != "kilograms":
+        print("Invalid entry")
+        continue
+    elif unit=="pounds":
         weight*=.454 #convert to KG to calculate
     #height + BMI calculations
     print("--------------------------------------")
-    while True:
-        height=float(input("What is your hieght in meters?\n"))
-        if height <=0:
+    height=float(input("What is your hieght in meters?\n"))
+    if height <=0:
             print("Enter valid height")
-        else:
-            break
+            continue
     height*=height
     bmi=weight/height
     #The print of the results
