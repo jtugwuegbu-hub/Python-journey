@@ -1,6 +1,9 @@
-available_chairs = [1,2,3,4,5,6,7,8,9,10]
+
+
+available_chairs = [0,1,2,3,4,5,6,7,8,9,10]
 rented_chairs = []
 damaged_chair = []
+num_chairs_rent_list=[]
 while True:
     print("------------------------------------------------")
     user_menu=input(
@@ -23,27 +26,31 @@ while True:
             
         elif num_chairs_rent <= len(available_chairs):
             print(f"you are about to rent out {num_chairs_rent} chairs")
-            print("you rented out chairs: ", end = "")
             for chair in range(num_chairs_rent):
-                chair=available_chairs.pop(0)
-                rented_chairs.append(chair)
-                print(chair, end = ", ") #eventually print the code from dictionary and it will be needed to retun the chair
-            print()
-            damage_input= input("Are any of the chairs damaged, if so type 'yes' if not type 'no': \n") # when they rent out a chair to see if chair is damaged
-            if damage_input == "no":
-                continue
-            elif damage_input == "yes":
-                for chair in rented_chairs:
+                rented=available_chairs.pop(0)
+                num_chairs_rent_list.append(rented)
+            while True:
+                damage_input= input("Are any of the chairs damaged, if so type 'yes' if not type 'no': \n") # when they rent out a chair to see if chair is damaged
+                if damage_input == "yes" or damage_input == "no":
+                    break
+            
+            if damage_input == "yes":
+                for chair in num_chairs_rent_list:
                     chair_damage =input(f"Is chair {chair} damaged: \n")
                     if chair_damage == "no":
-                        continue
+                        rented_chairs.append(chair)
                     elif chair_damage == "yes":
                         damaged_chair.append(chair)
-                        
                     else:
                         print("invalid input")
                 for chair in damaged_chair:
-                    rented_chairs.remove(chair)    
+                            num_chairs_rent_list.remove(chair)
+            elif damage_input == "no":
+                rented_chairs.extend(num_chairs_rent_list)    
+            print("you rented out chairs: ", end = "")
+            print(num_chairs_rent_list) #eventually print the code from dictionary and it will be needed to retun the chair
+            print()
+            num_chairs_rent_list.clear()
         
         else:
             print("Invalid statement")
