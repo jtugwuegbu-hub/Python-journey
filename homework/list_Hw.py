@@ -1,19 +1,18 @@
 list1=[1,2,3,3,2,1,3,4,6,6,8,1,4,3,2,8,4,3]
 duplicate=[]
-list2=[]
+# list2=[]
 # for number in list1:
 #     if number not in duplicate:
 #         duplicate.append(number)
 
 # print(duplicate)
-while True:
-    for number in list1:
-        amount_num=list1.count(number)
-        if amount_num<2:
-            list1.remove(number)
-            break
+
+for number in list1:
+    if duplicate.count(number)==0:
+        duplicate.append(number)
             
-print(list1)
+            
+print(duplicate)
     
 
 
@@ -44,19 +43,19 @@ print(list1)
 #
 # 
 # 
-list1=[1,2,3,3,2,1,3,4,6,6,8,1,4,3,2,8,4,3]
-amount=0
-valid=False
-number=int(input("What number are you looking for?:\n"))
-user_index= int(input(f"Enter the {number} you want to find:\n"))
-if list1.count(number)>0:
-    for index,value in enumerate(list1):
-        if value == number:
-            amount+=1
-            if amount == user_index:
-                print(index)
-                valid=True
-if valid is False:
-    print(f"There are {amount} in the list")
+# list1=[1,2,3,3,2,1,3,4,6,6,8,1,4,3,2,8,4,3]
+# amount=0
+# valid=False
+# number=int(input("What number are you looking for?:\n"))
+# user_index= int(input(f"Enter the {number} you want to find:\n"))
+# if list1.count(number)>0:
+#     for index,value in enumerate(list1):
+#         if value == number:
+#             amount+=1
+#             if amount == user_index:
+#                 print(index)
+#                 valid=True
+# if valid is False:
+#     print(f"There are {amount} in the list")
 
 
