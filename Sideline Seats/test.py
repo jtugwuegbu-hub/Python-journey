@@ -135,6 +135,6 @@ print("Thank you for using Sideline seats.")
 
 
 
-
+#When the user doesnt say yes or no, i loops back to the same question and doesnt just skip the question or iteraation
 
 
