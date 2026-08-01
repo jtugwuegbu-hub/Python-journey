@@ -1,14 +1,14 @@
 chair_rental_dictionary={
-"chair1":{"return_code":12,"availability":True,"damage":False},
-"chair2":{"return_code":23,"availability":True,"damage":False},
-"chair3":{"return_code":34,"availability":True,"damage":False},
-"chair4":{"return_code":45,"availability":True,"damage":False},
-"chair5":{"return_code":56,"availability":True,"damage":False},
-"chair6":{"return_code":67,"availability":True,"damage":False},
-"chair7":{"return_code":78,"availability":True,"damage":False},
-"chair8":{"return_code":89,"availability":True,"damage":False},
-"chair9":{"return_code":90,"availability":True,"damage":False},
-"chair10":{"return_code":10,"availability":True,"damage":False},
+"chair1":{12:"return_code","availability":True,"damage":False},
+"chair2":{23:"return_code","availability":True,"damage":False},
+"chair3":{34:"return_code","availability":True,"damage":False},
+"chair4":{45:"return_code","availability":True,"damage":False},
+"chair5":{56:"return_code","availability":True,"damage":False},
+"chair6":{67:"return_code","availability":True,"damage":False},
+"chair7":{78:"return_code","availability":True,"damage":False},
+"chair8":{89:"return_code","availability":True,"damage":False},
+"chair9":{90:"return_code","availability":True,"damage":False},
+"chair10":{10:"return_code","availability":True,"damage":False},
 }
 available_count=0 #To count if there are enough chairs available
 checkout_counter=0 #During the proccess of gettin the amount o chairs customer wants
@@ -28,6 +28,7 @@ while True:
     
     #Renting Chair
     if user_menu == "1" or user_menu == "rent":
+        available_count=0 #To count if there are enough chairs available
         for chair in chair_rental_dictionary.values(): #gettin amount of True from dictionary
             if chair["availability"]== True:
                 available_count +=1
@@ -41,53 +42,81 @@ while True:
             
         elif num_chairs_rent <= available_count:   #Start procces to getting them rented out
             print(f"you are about to rent out {num_chairs_rent} chairs")
-            for chair in chair_rental_dictionary:
-                if chair_rental_dictionary[chair]["availability"]== True:
-                    chair_rental_dictionary[chair]["availability"]= False
-                    checkout_counter+=1
-                    if checkout_counter==num_chairs_rent:
-                        break
+    
             while True:
                 damage_input= input("Are any of the chairs damaged, if so type 'yes' if not type 'no': \n").lower() # when they rent out a chair to see if chair is damaged
                 if damage_input == "yes" or damage_input == "no":
                     break
             
             if damage_input == "yes":                #What happens when chair is damaged
-                for chair in num_chairs_rent_list:
-                    chair_damage =input(f"Is chair {chair} damaged? 'yes' or 'no': \n").lower()
-                    if chair_damage == "no":
-                        rented_chairs.append(chair)
-                    elif chair_damage == "yes":
-                        damaged_chair.append(chair)
-                    else:
-                        print("invalid input")
-                for chair in damaged_chair:
-                            num_chairs_rent_list.remove(chair)
-            elif damage_input == "no":
-                rented_chairs.extend(num_chairs_rent_list)    #The final stages for user output on rented chairs
-            print("you rented out chairs: ", end = "") 
-            print(num_chairs_rent_list) #eventually print the code from dictionary and it will be needed to retun the chair
-            print()
-            num_chairs_rent_list.clear()
-        
-        else:
-            print("Invalid statement")
-            continue
+                checkout_counter=0
+                for chair in chair_rental_dictionary:
+                    if chair_rental_dictionary[chair]["availability"]==True:
+                        chair_damage =input(f"Is chair {chair} damaged? 'yes' or 'no': \n").lower() #indivisualinput on chair damage
+                        if chair_rental_dictionary[chair]["availability"]== True:
+                                checkout=chair_rental_dictionary[chair]["availability"]= False
+                        if chair_damage == "no":
+                            pass
+                        elif chair_damage == "yes":
+                            chair_rental_dictionary[chair]["damage"]= True
+                        else:
+                            print("invalid input")
+                        checkout_counter+=1
+                        if checkout_counter==num_chairs_rent:
+                            break
+                
+            elif damage_input == "no": #f the chair isnt damaged
+                checkout_counter=0
+                print("you rented out chairs: ")
+                for chair in chair_rental_dictionary:
+                    if chair_rental_dictionary[chair]["availability"]== True:
+                        checkout=chair_rental_dictionary[chair]["availability"]= False
+                        checkout_counter+=1
+                        print(f"{chair} ")
+                        if checkout_counter==num_chairs_rent:
+                            break
+                print()
+            else:
+                print("Invalid statement")
             
     elif user_menu == "2" or user_menu == "return":      #When the user wants to return chairs
+        rented_count=0 #To count if there are enough chairs rented out
+        for chair in chair_rental_dictionary.values(): #gettin amount of False from dictionary
+            if chair["availability"]== False:
+                rented_count +=1
         print("You selected return chairs")
-        num_chairs_return=int(input("How many chairs would you like to return\n")) #error handling  
-        if num_chairs_return == 0:
+        num_chairs_return=int(input("How many chairs would you like to return\n")) #error handling needed 
+        if rented_count== 0:
             print("You must return 1 chair")
             
-        elif num_chairs_return > len(rented_chairs):
+        elif num_chairs_return > rented_count:
             print("There are not that many chairs rented out")
             
-        elif num_chairs_return<= len(rented_chairs):   
-            for chair in range(num_chairs_return):
-                chair=rented_chairs.pop(0)
-                available_chairs.append(chair)
-                print(f"You returned chair: {chair}")
+        elif num_chairs_return<= rented_count:   #return procces with code verification
+            num_chairs_return_counter=0
+            for chair in chair_rental_dictionary:
+                if chair_rental_dictionary[chair]["availability"]==False:
+                    chair_return_code=int(input("Type the return code to the chair: "))
+                    if chair_rental_dictionary.get(chair.get[chair_return_code, "incorrect code"], "Incorrect code for chair")=="return_code":
+                        print(f"{chair} succesffully returned") 
+
+            
+            
+            # for chair in chair_rental_dictionary:
+            #     if chair_rental_dictionary[chair]["availability"]==False:
+            #         chair_return_code=int(input("Type the return code to the chair: "))
+            #         for chair,info in chair_rental_dictionary.items():
+            #             if chair_rental_dictionary[chair]["return_code"]== chair_return_code:
+            #                 chair_rental_dictionary[chair]["availability"]=True
+            #                 print(f"You successfully returned chair: {chair}")
+            #                 num_chairs_return_counter+=1
+            #                 break
+            #             else:
+            #                 print("invalid input")
+            #         correct_chair_return_code=chair_rental_dictionary[chair]["return_code"]#to extract thr number from dictionary, wont do it on next for some reason
+            #         if num_chairs_return==num_chairs_return_counter:
+            #                 break
+                
             
         else:
             print("Invalid Statement")
@@ -150,3 +179,5 @@ while True:
         print("Invalid statement, try again")  
 
 print("Thank you for using Sideline seats.")
+
+print(chair_rental_dictionary["chair1"]["return_code"])
