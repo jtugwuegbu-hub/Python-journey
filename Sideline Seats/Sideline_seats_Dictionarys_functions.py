@@ -1,14 +1,14 @@
 chair_rental_dictionary={
-"chair1":{12:"return_code","availability":True,"damage":False},
-"chair2":{23:"return_code","availability":True,"damage":False},
-"chair3":{34:"return_code","availability":True,"damage":False},
-"chair4":{45:"return_code","availability":True,"damage":False},
-"chair5":{56:"return_code","availability":True,"damage":False},
-"chair6":{67:"return_code","availability":True,"damage":False},
-"chair7":{78:"return_code","availability":True,"damage":False},
-"chair8":{89:"return_code","availability":True,"damage":False},
-"chair9":{90:"return_code","availability":True,"damage":False},
-"chair10":{10:"return_code","availability":True,"damage":False},
+12:{"chair#":"chair 1","availability":True,"damage":False},
+23:{"chair#":"chair 2","availability":True,"damage":False},
+34:{"chair#":"chair 3","availability":True,"damage":False},
+45:{"chair#":"chair 4","availability":True,"damage":False},
+56:{"chair#":"chair 5","availability":True,"damage":False},
+67:{"chair#":"chair 6","availability":True,"damage":False},
+78:{"chair#":"chair 7","availability":True,"damage":False},
+89:{"chair#":"chair 8","availability":True,"damage":False},
+90:{"chair#":"chair 9","availability":True,"damage":False},
+10:{"chair#":"chair 10","availability":True,"damage":False},
 }
 available_count=0 #To count if there are enough chairs available
 checkout_counter=0 #During the proccess of gettin the amount o chairs customer wants
@@ -52,7 +52,7 @@ while True:
                 checkout_counter=0
                 for chair in chair_rental_dictionary:
                     if chair_rental_dictionary[chair]["availability"]==True:
-                        chair_damage =input(f"Is chair {chair} damaged? 'yes' or 'no': \n").lower() #indivisualinput on chair damage
+                        chair_damage =input(f"Is chair {chair_rental_dictionary[chair]["chair#"]} damaged? 'yes' or 'no': \n").lower() #indivisualinput on chair damage
                         if chair_rental_dictionary[chair]["availability"]== True:
                                 checkout=chair_rental_dictionary[chair]["availability"]= False
                         if chair_damage == "no":
@@ -72,7 +72,7 @@ while True:
                     if chair_rental_dictionary[chair]["availability"]== True:
                         checkout=chair_rental_dictionary[chair]["availability"]= False
                         checkout_counter+=1
-                        print(f"{chair} ")
+                        print(f"{chair_rental_dictionary[chair]["chair#"]} Return code:{chair} ")
                         if checkout_counter==num_chairs_rent:
                             break
                 print()
@@ -97,8 +97,11 @@ while True:
             for chair in chair_rental_dictionary:
                 if chair_rental_dictionary[chair]["availability"]==False:
                     chair_return_code=int(input("Type the return code to the chair: "))
-                    if chair_rental_dictionary.get(chair.get[chair_return_code, "incorrect code"], "Incorrect code for chair")=="return_code":
-                        print(f"{chair} succesffully returned") 
+                    chair_rental_dictionary[chair_return_code]["availability"]=True
+                    print(f"{chair_rental_dictionary[chair_return_code]["chair#"]} succesffully returned")
+                    num_chairs_return_counter +=1
+                    if num_chairs_return_counter==num_chairs_return:
+                        break 
 
             
             
