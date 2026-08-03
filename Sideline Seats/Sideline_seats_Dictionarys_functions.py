@@ -27,7 +27,7 @@ def available_chairs_count():#Function to print the available chairs
     if available_count==0:
         print("No chairs available")
     print()
-    return available_chairs_count
+    return available_count
 def rented_chairs_count():#Function to print the rented chairs
     rented_count=0
     print("Chairs rented out:", end = "")
@@ -38,7 +38,7 @@ def rented_chairs_count():#Function to print the rented chairs
     if rented_count==0:
         print("No chairs rented out")
     print()
-    return rented_chairs_count
+    return rented_count
 def damaged_chair_count(): #Function to print the damaged chairs
     damaged_count=0
     print("Chairs damaged:", end = "")
