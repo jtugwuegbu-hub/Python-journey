@@ -16,6 +16,7 @@ account2.b=400
 #account1.total()
 
 #-------------------------------------------------------
+#Constructors
 class Person:
     def __init__(self, firstname, lastname):
         self.firstname = firstname
@@ -30,6 +31,7 @@ person2= Person("Jesse", "Ugwuegbu")
 #person2.talk()
 
 #-----------------------------------------------------------
+#Inheritence
 class Amphibian:
 
     def walk(self):
@@ -59,6 +61,7 @@ alligator1 = Alligator()
 # alligator1.diet()
 
 #----------------------------------------------
+#Multi level Inheritance
 class Vehicle: #parent class
     def __init__(self,name,mileage,capacity):
         self.name = name
@@ -74,12 +77,13 @@ class Bus(Vehicle):
         elif self.mileage > 100:
             fare *= 1.1
         
-        print(fare)
+        print(f"${fare}")
 
 bus1 = Bus("bus", 600, 50)
 #bus1.bus_fare()
 
 #-----------------------------------------------
+#Method overriding
 class Door: #parent class
     def open(self):
         print("push to open")
@@ -102,6 +106,7 @@ door2=Insider()
 # door2.close()
 
 #------------------------------------
+#Method Chaining
 class Calculate:
     def add(self,numbers):
         self.total=sum(numbers)
@@ -115,6 +120,7 @@ Calculate1=Calculate()
 #Calculate1.add([10,20,30,40]).avergae()
 
 #------------------------------------------
+#Super Function
 class Human:
     def __init__(self,name,age,pref):
         self.name=name
@@ -125,10 +131,117 @@ class Employee(Human):
     def __init__(self,name,age,pref,occupation):
         super().__init__(name,age,pref)
         self.occupation=occupation
-    def info(self):
-        print(self.name,self.age,self.pref,self.occupation)
+    def __str__(self):
+        return f"{self.name},{self.age},{self.pref},{self.occupation}"
 
 Employee1=Employee("Justin",18,"soccer","reffing")
 Employee2=Employee("Jeremy", 26,"spikeball","sales")
-# Employee1.info()
-# Employee2.info()
+#print(Employee1)
+#print(Employee2)
+
+#------------------------------------------
+#Multipul Inheritence
+class Inflow:
+    def add_cash(self,amount):
+        self.total += amount
+        self.transactions.append(f"added {amount}")
+class Outflow:
+    def remove_cash(self,amount):
+        if amount<=self.total:
+            self.total -=amount
+            self.transactions.append("removed {amount}")
+        else:
+            print("Not enough money in account")
+
+class Balance(Inflow,Outflow):
+    def __init__(self):
+        self.total = 0
+        self.transactions = []
+    def history(self):
+        for transaction in self.transactions:
+            print(transaction)
+    def AccountBalance(self):
+        print(self.total)
+
+# JustinAccount=Balance()
+# JustinAccount.add_cash(100)
+# JustinAccount.add_cash(500)
+# JustinAccount.history()
+# JustinAccount.AccountBalance()
+
+#------------------------------------------
+#Abstract classes
+from abc import ABC, abstractmethod
+
+class Traffic(ABC):
+    @abstractmethod
+    def Green(self):
+        pass
+    @abstractmethod
+    def Yellow(self):
+        pass
+    @abstractmethod
+    def Red(self):
+        pass
+
+class Traffic1(Traffic):
+    def Color(self):
+        print("The color is black")
+    def Green(self):
+        print("Go")
+    def Yellow(self):
+        print("slow down")
+    def Red(self):
+        print("stop")
+
+StopLight= Traffic1()
+
+#StopLight.Red()
+
+#------------------------------------------
+#Objects as arguments
+class Students:
+    def __init__(self,name,age,grade):
+        self.name=name
+        self.age=age
+        self.grade=grade
+    def __str__(self):
+         return f"{self.name},{self.age},{self.grade}"
+
+Student1=Students("Justin",18,12)
+Student2=Students("Jo",14,12)
+Student3=Students("John",20,12)
+
+Student1.age=25
+
+#print(Student1)
+#------------------------------------------
+#Duck Typing
+
+class Car:
+    def foward(self):
+        print("Car is in Drive")
+    def reverse(self):
+        print("Car is in reverse")
+
+class Motercycle:
+    def foward(self):
+        print("Bike is going foward")
+    
+
+
+class Rider:
+    def ride(self,vehicle):
+        try:
+            vehicle.foward()
+            vehicle.reverse()
+        except AttributeError:
+            print("not a car")
+
+car = Car()
+Motercycle= Motercycle()
+
+Vehicle1=Rider()
+
+Vehicle1.ride(Motercycle)
+
