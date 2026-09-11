@@ -140,7 +140,7 @@ Employee2=Employee("Jeremy", 26,"spikeball","sales")
 #print(Employee2)
 
 #------------------------------------------
-#Multipul Inheritence
+#Multipule Inheritence
 class Inflow:
     def add_cash(self,amount):
         self.total += amount
@@ -149,9 +149,9 @@ class Outflow:
     def remove_cash(self,amount):
         if amount<=self.total:
             self.total -=amount
-            self.transactions.append("removed {amount}")
+            self.transactions.append(f"removed {amount}")
         else:
-            print("Not enough money in account")
+            print(f"Not enough money in account, you tried to remove {amount}, only {self.total} is in the account")
 
 class Balance(Inflow,Outflow):
     def __init__(self):
@@ -166,7 +166,9 @@ class Balance(Inflow,Outflow):
 # JustinAccount=Balance()
 # JustinAccount.add_cash(100)
 # JustinAccount.add_cash(500)
+# JustinAccount.remove_cash(50)
 # JustinAccount.history()
+# JustinAccount.remove_cash(5000)
 # JustinAccount.AccountBalance()
 
 #------------------------------------------
@@ -185,7 +187,7 @@ class Traffic(ABC):
         pass
 
 class Traffic1(Traffic):
-    def Color(self):
+    def Color(self): #you can add extra methods to a class that inherrited abstract method
         print("The color is black")
     def Green(self):
         print("Go")
@@ -207,12 +209,26 @@ class Students:
         self.grade=grade
     def __str__(self):
          return f"{self.name},{self.age},{self.grade}"
+def changeinfo(Students):
+    changes= input("What do you want to change: ")#split attributes with ,
+    changes = changes.split(",")
 
+    for change in changes:
+        new_value=input(f"What do you want the new {change} to be: ")
+        
+
+        change= change.strip() #change is attribute
+        new_value= new_value.strip()
+
+        setattr(Students,change,new_value)
+
+
+    
 Student1=Students("Justin",18,12)
 Student2=Students("Jo",14,12)
 Student3=Students("John",20,12)
 
-Student1.age=25
+#changeinfo(Student1)
 
 #print(Student1)
 #------------------------------------------
@@ -224,24 +240,24 @@ class Car:
     def reverse(self):
         print("Car is in reverse")
 
-class Motercycle:
+class Motorcycle:
     def foward(self):
         print("Bike is going foward")
     
-
 
 class Rider:
     def ride(self,vehicle):
         try:
             vehicle.foward()
             vehicle.reverse()
+            print("Its a car")
         except AttributeError:
             print("not a car")
 
 car = Car()
-Motercycle= Motercycle()
+Motorcycle= Motorcycle()
 
 Vehicle1=Rider()
 
-Vehicle1.ride(Motercycle)
+Vehicle1.ride(Motorcycle)
 
